@@ -1,4 +1,5 @@
 import os
+from typing import Any
 
 import numpy as np
 from tokenizers import Tokenizer
@@ -31,7 +32,7 @@ class TokenizerDeployment:
         self._handle_batch.set_max_batch_size(int(os.getenv("MAX_BATCH_SIZE", default=32)))
         self._handle_batch.set_batch_wait_timeout_s(float(os.getenv("BATCH_WAIT_TIMEOUT_S", default="0.1")))          
 
-    def reconfigure(self, config: dict) -> None:
+    def reconfigure(self, config: dict[str, Any]) -> None:
         self._handle_batch.set_max_batch_size(config.get("max_batch_size", 2))
         self._handle_batch.set_batch_wait_timeout_s(
             config.get("batch_wait_timeout_s", 0.1)

@@ -1,4 +1,5 @@
 import os
+from typing import Any
 
 import ctranslate2
 from ray import serve
@@ -37,7 +38,7 @@ class EncoderDeployment:
         if not os.path.exists(self.model_path):
             self._download_and_convert_model()
 
-    def reconfigure(self, config: dict) -> None:
+    def reconfigure(self, config: dict[str, Any]) -> None:
         self._handle_batch.set_max_batch_size(config.get("max_batch_size", 32))
         self._handle_batch.set_batch_wait_timeout_s(
             config.get("batch_wait_timeout_s", 0.1)
