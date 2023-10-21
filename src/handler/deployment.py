@@ -87,7 +87,7 @@ class TextEmbeddingsServer:
         return embeddings
 
     @app.post("/openai", response_model=OpenAICompactResponse, status_code=status.HTTP_200_OK)
-    async def predict(self, data: OpenAICompactRequest):
+    async def embed_openai(self, data: OpenAICompactRequest):
         """OpenAI compatible route"""
         if isinstance(data.inputs, list):
             tasks = [self._route(text) for text in data.inputs]
