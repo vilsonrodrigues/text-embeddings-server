@@ -6,6 +6,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from ray import serve
 from ray.serve.handle import DeploymentHandle
 
+from config.app_config import AppConfig
 from handler.schemas import (
     EmbedRequest, 
     Info, 
@@ -44,15 +45,9 @@ app.add_middleware(
 @serve.ingress(app)
 class TextEmbeddingsServer:
     def __init__(self, encoder, tokenizer):        
-        self._get_envs()
+        self.app_config = AppConfig()
         self._encoder: DeploymentHandle = encoder.options(use_new_handle_api=True)
         self._tokenizer: DeploymentHandle = tokenizer.options(use_new_handle_api=True)
-
-    def _get_envs(self):
-        self.compute_type = os.getenv("DTYPE", default="float16")
-        self.model_id = os.getenv("MODEL_ID", default="thenlper/gte-base")  
-        self._max_batch_size = int(os.getenv("MAX_BATCH_SIZE", default=32))
-        self._version = os.getenv("VERSION")
 
     def format_openai_response(self, embeddings: list[list[float]]) -> OpenAICompactResponse:
         response_list = [
@@ -61,7 +56,7 @@ class TextEmbeddingsServer:
         ]
         response = {
             "data": response_list,
-            "model": self.model_id,
+            "model": self.app_config.model_id,
             "object": "list"
         }
         return response
@@ -69,10 +64,10 @@ class TextEmbeddingsServer:
     @app.get("/info", response_model=Info, status_code=status.HTTP_200_OK)
     def info(self):
         return {
-            "max_client_batch_size": self._max_batch_size,
-            "model_dtype": self.compute_type,
-            "model_id": self.model_id,
-            "version": self._version,
+            "max_client_batch_size": self.app_config.max_batch_size_encoder,
+            "model_dtype": self.app_config.compute_type,
+            "model_id": self.app_config.model_id,
+            "version": self.app_config.version,
         }
 
     async def _route(self, text: str) -> list[float]:
