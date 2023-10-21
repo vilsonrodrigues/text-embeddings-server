@@ -56,5 +56,5 @@ class EncoderDeployment:
         except Exception as e:
             raise str(e)
         
-    async def predict(self, tokens: list[int]) -> list[float]:
+    async def encode(self, tokens: list[int]) -> list[float]:
         return await self._handle_batch(tokens)  

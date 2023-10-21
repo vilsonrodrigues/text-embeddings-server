@@ -71,7 +71,7 @@ class TextEmbeddingsServer:
 
     async def _route(self, text: str) -> list[float]:
         try:
-            embedding = self._encoder.predict.remote(self._tokenizer.tokenize.remote(text))
+            embedding = self._encoder.encode.remote(self._tokenizer.tokenize.remote(text))
             return await embedding
         except:
             raise HTTPException(status_code=424, detail="Inference failed")
