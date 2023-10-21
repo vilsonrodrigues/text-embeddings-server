@@ -2,6 +2,7 @@ import os
 from typing import Any
 
 import ctranslate2
+import numpy as np
 from ray import serve
 
 from config.app_config import AppConfig
@@ -54,8 +55,9 @@ class EncoderDeployment:
     @serve.batch(max_batch_size=64, batch_wait_timeout_s=0.1)
     async def _handle_batch(self, tokens_list: list[list[int]]) -> list[list[float]]:
         try:
-             embeddings = self.encoder.forward_batch(tokens_list)
-             return embeddings.tolist()
+            embeddings = self.encoder.forward_batch(tokens_list)
+            embeddings_array = np.array(embeddings)
+            return embeddings_array.tolist()
         except Exception as e:
             raise str(e)
         
