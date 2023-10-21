@@ -38,6 +38,9 @@ class EncoderDeployment:
         if not os.path.exists(self.app_config.model_path):
             self._download_and_convert_model()
 
+    def _download_and_convert_model(self):
+        os.system(f"!ct2-transformers-converter --model {self.app_config.model_id} --output_dir {self.app_config.model_path}")
+
     def _set_dynamic_batch_configs(self):
         self._handle_batch.set_max_batch_size(self.app_config.max_batch_size_encoder)
         self._handle_batch.set_batch_wait_timeout_s(self.app_config.batch_wait_timeout_s)            
