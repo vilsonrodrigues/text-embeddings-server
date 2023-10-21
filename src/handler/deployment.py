@@ -28,7 +28,6 @@ app.add_middleware(
 
 @serve.deployment(
     name="TextEmbeddingsServer",
-    user_config=dict(max_batch_size=32, batch_wait_timeout_s=0.1),
     ray_actor_options={
         "num_gpus": 0.0,
         "num_cpus": 1.0,
