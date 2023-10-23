@@ -1,4 +1,6 @@
-<p style="text-align:center; font-size:40px; font-family: 'Comic Sans MS', cursive;">TEXT EMBEDDINGS SERVER (TES)</p>
+<p align="center">
+<img src="images/tes-logo.png" alt="texto alternativo" width="500" height="500">
+</p>
 
 <p align="center">
 <img alt="GitHub" src="https://img.shields.io/github/license/vilsonrodrigues/text-embeddings-server.svg?color=yellow">
@@ -6,13 +8,10 @@
 <img alt="GitHub forks" src="https://img.shields.io/github/forks/vilsonrodrigues/text-embeddings-server.svg?color=rose">
 </p>
 
-![](images/tes-logo.png)
+
+<p style="text-align:center; font-size:40px; font-family: 'Comic Sans MS', cursive;">TEXT EMBEDDINGS SERVER</p>
 
 
 A scalable open-source text embedding server ☄️📄
 
 
-<!-- Incluindo conteúdo de outro arquivo Markdown -->
-[Leia mais](outro-arquivo.md)
-
-[Leia mais](https://raw.githubusercontent.com/usuario/repositorio/master/caminho/para/outro-arquivo.md)
