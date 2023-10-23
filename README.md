@@ -10,3 +10,9 @@
 
 
 A scalable open-source text embedding server ☄️📄
+
+
+<!-- Incluindo conteúdo de outro arquivo Markdown -->
+[Leia mais](outro-arquivo.md)
+
+[Leia mais](https://raw.githubusercontent.com/usuario/repositorio/master/caminho/para/outro-arquivo.md)
