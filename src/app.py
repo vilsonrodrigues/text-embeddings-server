@@ -1,5 +1,4 @@
-from encoder.deployment import EncoderDeployment
-from handler.deployment import TextEmbeddingsServer
-from tokenizer.deployment import TokenizerDeployment
+from encoders.ct2 import EncoderCt2
+from server.deployment import TextEmbeddingsServer
 
-tes = TextEmbeddingsServer.bind(EncoderDeployment.bind(), TokenizerDeployment.bind())
+tes = TextEmbeddingsServer.bind(EncoderCt2())
