@@ -1,7 +1,7 @@
 from pydantic import BaseModel
 
 class Input(BaseModel):
-	oneOf: str | list(str)
+	oneOf: str | list[str]
 
 class EmbedRequest(BaseModel):
 	inputs: Input
@@ -21,6 +21,7 @@ class OpenAICompactResponse(BaseModel):
 	object: str
 
 class Info(BaseModel):
+    backend: str
     max_client_batch_size: int
     model_dtype: str
     model_id: str
