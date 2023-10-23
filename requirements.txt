@@ -1,2 +1,4 @@
 ctranslate2==3.20.0
+pydantic-settings<=1.99
+torch>=2.0.0
 transformers==4.34.1
