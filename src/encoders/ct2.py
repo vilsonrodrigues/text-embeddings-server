@@ -60,7 +60,8 @@ class EncoderCt2:
         
         self.encoder = ctranslate2.Encoder(*args)       
 
-    async def encode(self, tokens_list: list[list[str]]) -> list[list[float]]:
-        embeddings = self.encoder.forward_batch(tokens_list).pooler_output
+    async def encode(self, text_list: list[list[str]]) -> list[list[float]]:
+        """ Recive a list of list of text and convert in embeddings"""
+        embeddings = self.encoder.forward_batch(text_list).pooler_output
         embeddings_array = np.array(embeddings)
         return embeddings_array.tolist()
