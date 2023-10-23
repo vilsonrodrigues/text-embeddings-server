@@ -9,7 +9,7 @@
 </p>
 
 
-<p style="text-align:center; font-size:40px; font-family: 'Comic Sans MS', cursive;">TEXT EMBEDDINGS SERVER</p>
+<p align="center" style="text-align:center; font-size:70px; font-family: 'Comic Sans MS', cursive;">TEXT EMBEDDINGS SERVER</p>
 
 
 A scalable open-source text embedding server ☄️📄
